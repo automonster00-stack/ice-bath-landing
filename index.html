@@ -97,7 +97,7 @@
     }
 
     /* === VIDEO === */
-    .video-wrap {
+    .video-wrap { position: relative;
       position: relative; width: 100%; max-width: 400px;
       margin: 40px auto 0; border-radius: 22px; overflow: hidden;
       border: 1px solid rgba(212,169,74,0.22);
@@ -246,9 +246,28 @@
   <p class="hero-subtitle">针灸 &bull; ריפוי טבעי &bull; איזון פנימי</p>
 
   <div class="video-wrap">
-    <video autoplay muted loop playsinline poster="dikur-sini-poster.png">
+    <video id="dikurVideo" controls autoplay loop playsinline poster="dikur-sini-poster.png" style="cursor:pointer;">
       <source src="dikur-sini.mp4" type="video/mp4">
     </video>
+  <div id="unmuteOverlay" onclick="unmuteVideo()" style="
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    background:rgba(0,0,0,0.45); cursor:pointer; z-index:10; border-radius:12px;
+  ">
+    <div style="background:rgba(0,0,0,0.7); border-radius:50%; width:80px; height:80px;
+      display:flex; align-items:center; justify-content:center; font-size:32px; border:2px solid rgba(253,230,138,0.6);">
+      🔇
+    </div>
+    <p style="position:absolute; bottom:20px; color:#fde68a; font-size:14px; font-family:Arial;">לחץ להפעלת סאונד</p>
+  </div>
+  <script>
+    function unmuteVideo(){
+      var v = document.getElementById('dikurVideo');
+      var o = document.getElementById('unmuteOverlay');
+      v.muted = false;
+      v.play();
+      o.style.display = 'none';
+    }
+  </script>
   </div>
 
   <div class="benefits">
